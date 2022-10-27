@@ -148,8 +148,8 @@ function genAssetData(release, targetOs) {
     // GET /repos/:owner/:repo/releases/assets/:asset_id
     // https://api.github.com/repos/$1/releases/latest
     return {
-        owner: "urbdyn",
-        repo: "nexe_builds",
+        owner: "yoavain",
+        repo: "nexe-builds",
         artifactRegex: `^${targetOs}-.*`,
         release
     };

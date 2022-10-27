@@ -1,4 +1,4 @@
-# urbdyn/nexe_builds release log
+# yoavain/nexe-builds release log
 
 ## 0.2.0
 
