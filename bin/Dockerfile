@@ -1,4 +1,4 @@
-FROM centos:7
+FROM centos:8
 
 RUN yum install -y which python3 centos-release-scl epel-release
 RUN yum install -y ccache devtoolset-8
