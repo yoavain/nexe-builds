@@ -20,15 +20,18 @@ jobs:
       matrix:
         os: [windows-latest]
         #os: [ubuntu-latest, windows-latest, macos-latest]
-        node_version: ['14.20.1', '16.18.0', '18.12.0', '19.0.0']
+        node_version: ['14.21.1', '16.18.1', '18.12.1', '19.0.1']
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v3
+
       - name: Use Node.js from .nvmrc
         uses: actions/setup-node@v3
         with:
           node-version-file: '.nvmrc'
           cache: 'npm'
+
       - name: Declare caches for build
         uses: actions/cache@v3
         with:
@@ -36,7 +39,9 @@ jobs:
             ~/.ccache/
           key: ${{ matrix.os }}-${{ matrix.node_version }}
 
-      - run: npm ci
+      - name: npm ci
+        run: npm ci
+
       - name: Run nexe CD build
         id: run_cd
         run: |
@@ -74,6 +79,7 @@ jobs:
         with:
           name: ${{ steps.run_cd.outputs.release_name }}
           path: dist/${{ steps.run_cd.outputs.release_file }}
+
       - name: Upload Release Asset
         uses: actions/upload-release-asset@v1
         if: steps.run_cd.outputs.build_occurred == 'true' && github.ref == 'refs/heads/main'
