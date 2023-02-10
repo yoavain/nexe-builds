@@ -18,8 +18,9 @@ jobs:
         shell: bash
     strategy:
       matrix:
-        os: [windows-latest]
-        #os: [ubuntu-latest, windows-latest, macos-latest]
+        # TODO: Bump to windows-latest once it can be solved how to install Python2
+        # such that the Node.js build system can detect it.
+        os: [ubuntu-latest, windows-2019, macos-latest]
         node_version: ['14.21.2', '16.19.0', '18.14.0', '19.6.0']
 
     steps:
@@ -63,10 +64,10 @@ jobs:
           echo "release_file=$release_file"
           echo "release_name=$release_name"
           echo "build_occurred=$build_occurred"
-          echo "::set-output name=release_id::$release_id"
-          echo "::set-output name=release_file::$release_file"
-          echo "::set-output name=release_name::$release_name"
-          echo "::set-output name=build_occurred::$build_occurred"
+          echo "release_id=$release_id" >> $GITHUB_OUTPUT
+          echo "release_file=$release_file" >> $GITHUB_OUTPUT
+          echo "release_name=$release_name" >> $GITHUB_OUTPUT
+          echo "build_occurred=$build_occurred" >> $GITHUB_OUTPUT
         env:
           NODE_VERSION: ${{ matrix.node_version }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
