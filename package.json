@@ -25,7 +25,7 @@
   },
   "homepage": "https://github.com/yoavain/nexe-builds#readme",
   "dependencies": {
-    "@octokit/request": "6.2.3",
+    "@octokit/request": "7.0.0",
     "nexe": "4.0.0-rc.2"
   }
 }
